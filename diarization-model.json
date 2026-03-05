@@ -1,0 +1,36 @@
+{
+  "mirrors": [],
+  "files": [
+    {
+      "name": "preload.data",
+      "baseUrl": "https://huggingface.co/moeru-ai/sherpaw-campplus-zh-en-advanced/resolve/5fc23543ac94200ae77514cf1c40596c5d70f6e8",
+      "remote": "install/bin/wasm/preload.data",
+      "size": 28281164,
+      "sha256": "aa3cfc16963a10586a9393f5035d6d6b57e98d358b347f80c2a30bf4f00ceba2",
+      "provenance": {
+        "model": "CAM++ Chinese/English advanced speaker embeddings",
+        "licence": "Apache-2.0",
+        "chain": [
+          "3D-Speaker (Alibaba DAMO)",
+          "moeru-ai/sherpaw-campplus-zh-en-advanced"
+        ],
+        "revision": "5fc23543ac94200ae77514cf1c40596c5d70f6e8"
+      }
+    },
+    {
+      "name": "preload.js.metadata",
+      "baseUrl": "https://huggingface.co/moeru-ai/sherpaw-campplus-zh-en-advanced/resolve/5fc23543ac94200ae77514cf1c40596c5d70f6e8",
+      "remote": "install/bin/wasm/preload.js.metadata",
+      "size": 106,
+      "sha256": "871501919c13f0a758e4d80f2ea1b358a3c9ef7a7e7b0951009532c1994de0b3",
+      "provenance": {
+        "model": "Preload pack file offsets",
+        "licence": "Apache-2.0",
+        "chain": [
+          "moeru-ai/sherpaw-campplus-zh-en-advanced"
+        ],
+        "revision": "5fc23543ac94200ae77514cf1c40596c5d70f6e8"
+      }
+    }
+  ]
+}
