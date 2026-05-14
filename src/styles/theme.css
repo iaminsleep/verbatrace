@@ -1,0 +1,181 @@
+
+
+@layer theme, base, components, utilities;
+
+@import "tailwindcss";
+
+@theme static {
+  --font-sans: "IBM Plex Sans Variable", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --color-background: #10181d;
+  --color-surface: #172228;
+  --color-elevated: #1e2d34;
+  --color-border: #344750;
+  --color-foreground: #eef6f7;
+  --color-muted-foreground: #a6bbc3;
+
+  --color-accent: #2aa6b8;
+  --color-accent-foreground: #0d1314;
+  --color-accent-hover: color-mix(in oklab, var(--color-accent) 86%, white);
+  --color-accent-soft: color-mix(in srgb, var(--color-accent) 16%, transparent);
+  --color-ring: var(--color-accent);
+
+  --color-destructive: #ff9288;
+  --color-success: #5fa87c;
+  --color-warning: #d9a441;
+
+  --color-speaker-1: #3987e5;
+  --color-speaker-2: #d95926;
+  --color-speaker-3: #9085e9;
+  --color-speaker-4: #c98500;
+  --color-speaker-5: #d55181;
+  --color-speaker-6: #008300;
+  --color-speaker-7: #e66767;
+
+  --color-speaker-none: #a6bbc3;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+
+  --measure: 76ch;
+}
+
+@layer theme {
+  :root[data-theme="light"] {
+    --color-background: #edf3f5;
+    --color-surface: #ffffff;
+    --color-elevated: #f1f6f8;
+    --color-border: #ccd9df;
+    --color-foreground: #17272e;
+    --color-muted-foreground: #465e6a;
+
+    --color-accent: #117180;
+    --color-accent-foreground: #ffffff;
+    --color-accent-hover: color-mix(in oklab, var(--color-accent) 86%, black);
+
+    --color-destructive: #a73730;
+    --color-success: #2f6d49;
+    --color-warning: #805500;
+
+    --color-speaker-1: #2a78d6;
+    --color-speaker-2: #eb6834;
+    --color-speaker-3: #6250d6;
+    --color-speaker-4: #eda100;
+    --color-speaker-5: #e87ba4;
+    --color-speaker-6: #008300;
+    --color-speaker-7: #e34948;
+    --color-speaker-none: #465e6a;
+  }
+}
+
+html {
+  color-scheme: dark;
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+body,
+[data-surface] {
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+}
+
+.transcript-search-field input:focus-visible {
+  outline: none;
+}
+
+@layer components {
+
+  .word {
+    border-radius: 3px;
+    padding-inline: 2px;
+    cursor: pointer;
+    transition: background-color 120ms linear;
+  }
+  .word:hover {
+    background-color: color-mix(in srgb, var(--color-foreground) 10%, transparent);
+  }
+  .word[data-active="true"] {
+    background-color: var(--color-accent);
+    color: var(--color-accent-foreground);
+  }
+  .word[data-found="true"]:not([data-active="true"]) {
+    background-color: color-mix(in srgb, var(--color-warning) 34%, transparent);
+  }
+  .word[data-picked="true"]:not([data-active="true"]) {
+    background-color: var(--color-accent-soft);
+  }
+
+  .word[data-unsure="true"] {
+    text-decoration: underline dotted var(--color-muted-foreground);
+    text-underline-offset: 3px;
+  }
+}
+
+@layer components {
+  .workspace-header {
+    @apply flex h-14 shrink-0 items-center justify-between gap-3 border-b border-border bg-surface px-4 sm:px-7;
+  }
+
+  .workspace-field {
+    @apply min-h-10 min-w-0 rounded-md border border-border bg-surface px-3 text-sm text-foreground focus-within:border-accent;
+  }
+
+  .storage-notice {
+    @apply border-warning/40 bg-warning/10 text-warning;
+  }
+
+  :root[data-theme="light"] .storage-notice {
+    border-color: #dfbf61;
+    background-color: #fff3c4;
+    color: var(--color-warning);
+  }
+
+  .transcript-paper {
+    @apply flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden rounded-lg border border-border bg-surface;
+  }
+
+  .player-dock {
+    padding-bottom: max(.625rem, env(safe-area-inset-bottom));
+  }
+}
+
+@media (pointer: coarse) {
+  [data-control], [role="menuitem"], [role="menuitemradio"], .workspace-field {
+    min-height: 44px;
+  }
+
+  [data-icon-control] {
+    min-width: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
