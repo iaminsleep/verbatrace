@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <style>
+    @media (prefers-color-scheme: dark) {
+      .tile { fill: #2AA6B8; }
+    }
+  </style>
+  <rect class="tile" width="32" height="32" rx="6" fill="#117180"/>
+  <g fill="#FFFFFF" transform="translate(6 6) scale(.625)">
+    <rect x="2.2"  y="11" width="3.6" height="10" rx="1.8" opacity="0.5"/>
+    <rect x="8.2"  y="7"  width="3.6" height="18" rx="1.8" opacity="0.72"/>
+    <rect x="14.2" y="3"  width="3.6" height="26" rx="1.8"/>
+    <rect x="20.2" y="6"  width="3.6" height="20" rx="1.8" opacity="0.72"/>
+    <rect x="26.2" y="10" width="3.6" height="12" rx="1.8" opacity="0.5"/>
+  </g>
+</svg>
