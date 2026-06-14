@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <script>
+      try {
+        var saved = localStorage.getItem("verbatrace-theme");
+        var theme =
+          saved === "light" || saved === "dark"
+            ? saved
+            : window.matchMedia("(prefers-color-scheme: light)").matches
+              ? "light"
+              : "dark";
+        document.documentElement.dataset.theme = theme;
+        var lang = localStorage.getItem("verbatrace-locale");
+        document.documentElement.lang =
+          lang === "ru" || lang === "en"
+            ? lang
+            : (navigator.language || "en").toLowerCase().indexOf("ru") === 0
+              ? "ru"
+              : "en";
+      } catch (e) {}
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Verbatrace</title>
+    <meta
+      name="description"
+      content="Transcribe audio and video with word timestamps. Recognition runs locally in your browser."
+    />
+    <link rel="icon" type="image/x-icon" sizes="16x16 32x32 48x48" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" sizes="any" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-touch-icon-152.png" />
+    <link rel="apple-touch-icon" sizes="167x167" href="/icons/apple-touch-icon-167.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#10181d" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#edf3f5" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

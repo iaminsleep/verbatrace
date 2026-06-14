@@ -8,6 +8,12 @@
     "node": ">=22.0.0"
   },
   "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "setup": "npm run build && npm run speech-model",
+    "serve": "node scripts/serve.mjs",
+    "start": "node scripts/serve.mjs",
+    "preview": "vite preview",
     "speech-model": "node scripts/fetch-speech-model.mjs",
     "diarization-model": "node scripts/fetch-diarization-model.mjs"
   },
