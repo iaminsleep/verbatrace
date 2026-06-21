@@ -14,8 +14,11 @@
     "serve": "node scripts/serve.mjs",
     "start": "node scripts/serve.mjs",
     "preview": "vite preview",
+    "check": "npm run build && npm run test:unit && npm run test:server",
     "speech-model": "node scripts/fetch-speech-model.mjs",
-    "diarization-model": "node scripts/fetch-diarization-model.mjs"
+    "diarization-model": "node scripts/fetch-diarization-model.mjs",
+    "test:server": "node --test scripts/server.test.mjs",
+    "test:unit": "node --import tsx --test src/local/export/srt.test.ts"
   },
   "dependencies": {
     "@fontsource-variable/ibm-plex-sans": "^5.3.0",
