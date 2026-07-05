@@ -1,0 +1,23 @@
+
+example.com {
+	root * /srv/verbatrace/dist
+	encode zstd gzip
+
+	header Cross-Origin-Opener-Policy same-origin
+	header Cross-Origin-Embedder-Policy credentialless
+	header X-Content-Type-Options nosniff
+	header Referrer-Policy strict-origin-when-cross-origin
+	header X-Frame-Options DENY
+	header Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+	header /site.webmanifest Content-Type application/manifest+json
+
+	handle_path /speech-model/* {
+		root * /srv/verbatrace/speech-model
+		header Cache-Control "public, max-age=31536000, immutable"
+		header Cross-Origin-Resource-Policy same-origin
+		file_server
+	}
+
+	try_files {path} /index.html
+	file_server
+}

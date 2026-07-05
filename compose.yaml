@@ -1,0 +1,22 @@
+services:
+  model-fetch:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile
+      target: model-fetch
+    volumes:
+      - ${VERBATRACE_SPEECH_MODEL_DIR:-./.speech-model}:/app/.speech-model
+    restart: "no"
+
+  app:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile
+    depends_on:
+      model-fetch:
+        condition: service_completed_successfully
+    ports:
+      - "${VERBATRACE_BIND:-127.0.0.1}:${VERBATRACE_PORT:-3000}:80"
+    volumes:
+      - ${VERBATRACE_SPEECH_MODEL_DIR:-./.speech-model}:/srv/verbatrace/speech-model:ro
+    restart: unless-stopped
