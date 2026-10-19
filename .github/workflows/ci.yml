@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check tracked file sizes
+        run: |
+          git rev-list --objects HEAD |
+            git cat-file --batch-check='%(objecttype) %(objectsize) %(rest)' |
+            awk '
+            $1 == "blob" && $2 > 10 * 1024 * 1024 { print "File exceeds 10 MiB:", $0; failed = 1 }
+            END { exit failed }
+          '
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: npm audit
+      - run: docker compose config --quiet
+
+  docker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -f deploy/Dockerfile .

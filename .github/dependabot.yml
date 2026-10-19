@@ -1,0 +1,21 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      routine-updates:
+        exclude-patterns:
+          - onnxruntime-web
+          - parakeet.js
+          - "@sherpaw/speaker-diarization"
+          - vite
+          - "@vitejs/plugin-react"
+        update-types:
+          - minor
+          - patch
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
