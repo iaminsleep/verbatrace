@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      - uses: actions/cache@v4
+      - uses: actions/cache@v6
         with:
           path: .speech-model
           key: speech-model-${{ hashFiles('speech-model.json', 'diarization-model.json') }}
