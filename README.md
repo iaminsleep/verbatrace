@@ -37,10 +37,10 @@ For Docker, run `docker compose up -d` and open [127.0.0.1:3000](http://127.0.0.
 
 [MIT license](LICENSE)
 
-## Feedback & Collaboration
+## Feedback
 
-I'm open to feedback, feature suggestions, and ideas for improving this project.
+Feedback, bug reports, and feature suggestions are welcome.
 
-If you're using this project in your work and have a specific use case or need a feature tailored to your workflow, feel free to reach out. I'm also open to discussing potential collaborations.
+If you find Verbatrace useful or have ideas for improving it, feel free to open an issue or start a discussion.
 
-You can contact me at: **iaminsleep@gmail.com**
+For questions or other inquiries: **iaminsleep@gmail.com**
